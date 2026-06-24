@@ -49,3 +49,16 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 cp .env.example .env   # add your Anthropic key
 .venv/bin/uvicorn web.adapter:app --host 0.0.0.0 --port 8000
 ```
+
+## License & third-party content
+
+The original code in this repo is released under the [MIT License](LICENSE).
+
+The MIT grant covers **only** the original software. It does **not** cover bundled
+third-party game content, which keeps its own rights:
+
+- `dnd-dm/compendium/srd/` — Wizards of the Coast 5e **System Reference Document**,
+  used under its own open license (see the `NOTICE.md` in that folder).
+- `dnd-dm/campaign/phandelver.yaml` — contains text adapted from *Lost Mine of
+  Phandelver*, © Wizards of the Coast. Included here for personal use; **not**
+  licensed under MIT and not affiliated with or endorsed by Wizards of the Coast.
