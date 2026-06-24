@@ -1,0 +1,328 @@
+# Lost Mine of Phandelver — Part 1: Goblin Arrows
+# Structure/facts adapted for the dnd-dm engine. Scene notes are original factual
+# summaries; the DM model generates all narration live (no boxed text is copied).
+# Monster stats are from the 5e SRD. Built from the user's own purchased copy.
+
+meta:
+  slug: phandelver
+  title: "Lost Mine of Phandelver"
+  ruleset: "5e-srd-5.1"
+  starting_scene: the-road-to-phandalin
+  level_range: [1, 2]
+  tone: "Classic heroic D&D on the Sword Coast frontier — adventurous, with a thread of menace under the goblin raids. Keep it brisk and evocative."
+  arc: >-
+    The adventure runs in five parts. (1) GOBLIN ARROWS — the party is ambushed escorting
+    Gundren Rockseeker's supply wagon, tracks the Cragmaw goblins to a cave hideout, frees the
+    warrior Sildar, and learns Gundren and his map to Wave Echo Cave were taken on to Cragmaw
+    Castle. (2) PHANDALIN — the frontier town is bullied by the Redbrand ruffians, secretly led
+    by "Glasstaff", who is the missing Lords' Alliance wizard Iarno Albrek; here the party gathers
+    leads toward Cragmaw Castle and the lost mine. (3) CRAGMAW CASTLE — storm the goblin
+    stronghold, confront King Grol, rescue Gundren, recover the map. (4) WILDERNESS — chase leads
+    across the region (Old Owl Well, the ruins of Thundertree, and more) on the way to the mine.
+    (5) WAVE ECHO CAVE — the lost mine and its Forge of Spells, where the true mastermind is faced:
+    the Black Spider, a drow named Nezznar, who set the whole plot in motion to seize the Forge.
+    Through-line: Gundren's map leads to Wave Echo Cave and the Forge of Spells, with the Black
+    Spider behind everything from the first ambush. Only Part 1 is built so far — foreshadow the
+    larger story, but reveal nothing ahead of the party.
+  safety:
+    lines: []
+    veils: ["graphic torture of prisoners — keep Sildar's mistreatment off-screen"]
+
+locations:
+  - slug: triboar-trail
+    name: "The Triboar Trail"
+    region: "Sword Coast frontier"
+    description: "A rough wilderness road running east toward Phandalin; woods press close, with steep embankments and thickets where raiders can hide."
+  - slug: cragmaw-hideout
+    name: "Cragmaw Hideout"
+    region: "Sword Coast frontier"
+    description: "A cave complex in a hillside about five miles northwest of the ambush site, used by the Cragmaw goblin tribe to raid the trail. A cold stream runs through it; stalactite vaults, rubble, and stalagmites throughout."
+  - slug: phandalin
+    name: "Phandalin"
+    region: "Sword Coast frontier"
+    description: "A small frontier town being resettled near the ruins of an old mining settlement. Destination of Gundren's supply wagon. (Part 2.)"
+
+npcs:
+  - slug: gundren-rockseeker
+    name: "Gundren Rockseeker"
+    role: "dwarf prospector and the party's patron"
+    location: null
+    disposition: 40
+    persona: "An excitable, secretive dwarf who hired the party in Neverwinter to haul a wagon of supplies to Phandalin. Rode ahead with a warrior escort to 'take care of business.'"
+    knowledge: "He and his brothers Tharden and Nundro rediscovered the lost entrance to Wave Echo Cave and the mine of the Phandelver's Pact. He carried a map to it."
+    secrets: "He was captured by the Cragmaw goblins on the Black Spider's orders and taken — with his map — to King Grol at Cragmaw Castle. He is NOT in the hideout."
+  - slug: sildar-hallwinter
+    name: "Sildar Hallwinter"
+    role: "human warrior, agent of the Lords' Alliance"
+    location: goblin-den
+    disposition: 30
+    persona: "A kindhearted human of nearly fifty, formerly of Waterdeep's griffon cavalry. Honorable and steady; eager to reach Phandalin. Currently a beaten prisoner, weak and at 1 HP."
+    knowledge: "Gundren's map was taken; he believes Klarg sent Gundren and the map onward to King Grol at Cragmaw Castle. He came to find Iarno Albrek, a Lords' Alliance wizard who vanished in Phandalin about two months ago. The three Rockseeker brothers found Wave Echo Cave (the Phandelver's Pact)."
+    secrets: "If freed and healed he'll join the party to Phandalin and pay 50 gp (a loan, settled in town)."
+  - slug: klarg
+    name: "Klarg"
+    role: "bugbear boss of the Cragmaw hideout"
+    location: klargs-cave
+    disposition: -60
+    persona: "A bugbear with delusions of grandeur who speaks of himself in the third person ('Klarg will build a throne from your bones!'). Sees himself as a warlord-in-the-making. His goblins resent his bullying."
+    knowledge: "Answers to King Grol, chief of the Cragmaws at Cragmaw Castle. A messenger relayed the Black Spider's order to waylay Gundren and send him and his map to Grol."
+    secrets: "He obeyed — Gundren and the map were sent on to Cragmaw Castle. Keeps the tribe's stolen plunder (and a hidden chest) in his cave."
+  - slug: yeemik
+    name: "Yeemik"
+    role: "goblin, second-in-command of the hideout"
+    location: goblin-den
+    disposition: -40
+    persona: "An ambitious, cowardly, treacherous goblin who schemes to overthrow Klarg and run the hideout himself."
+    knowledge: "Knows the hideout layout and that Klarg holds the loot in area 8. Holds Sildar hostage."
+    secrets: "Will betray any bargain — even if the party kills Klarg for him, he'll still demand a ransom for Sildar."
+  - slug: king-grol
+    name: "King Grol"
+    role: "chief of the Cragmaw goblins (offscreen, Cragmaw Castle)"
+    location: null
+    disposition: -70
+    persona: "A brutal bugbear king ruling the Cragmaw tribe from Cragmaw Castle, northeast in Neverwinter Wood."
+    knowledge: "Holds the captured Gundren and his map."
+    secrets: "Is in the pay of the Black Spider. (Part 3.)"
+  - slug: black-spider
+    name: "the Black Spider"
+    role: "hidden mastermind (offscreen)"
+    location: null
+    disposition: -90
+    persona: "A shadowy figure pulling the Cragmaws' strings. The party knows only the name, whispered by goblins."
+    knowledge: "Wants the location of Wave Echo Cave and the Forge of Spells within it."
+    secrets: "Is Nezznar, a drow. Orchestrated Gundren's capture to seize the map. Do not reveal until much later."
+
+monsters:
+  - slug: goblin
+    name: "Goblin"
+    statblock: { ac: 15, hp: 7, speed: 30, dex_mod: 2,
+                 attacks: [ {name: "Scimitar", bonus: 4, damage: "1d6+2", type: "slashing"},
+                            {name: "Shortbow", bonus: 4, damage: "1d6+2", type: "piercing"} ],
+                 saves: {}, skills: {stealth: 6},
+                 traits: ["Nimble Escape: Disengage or Hide as a bonus action each turn"] }
+  - slug: wolf
+    name: "Wolf"
+    statblock: { ac: 13, hp: 11, speed: 40, dex_mod: 1,
+                 attacks: [ {name: "Bite", bonus: 4, damage: "2d4+2", type: "piercing"} ],
+                 saves: {},
+                 traits: ["Pack Tactics", "On a hit the target makes a DC 11 Str save or is knocked prone"] }
+  - slug: klarg
+    name: "Klarg"
+    statblock: { ac: 16, hp: 27, speed: 30, dex_mod: 2,
+                 attacks: [ {name: "Morningstar", bonus: 4, damage: "2d8+2", type: "bludgeoning"},
+                            {name: "Javelin", bonus: 4, damage: "1d6+2", type: "piercing"} ],
+                 saves: {},
+                 traits: ["Brute (extra die already in damage)", "Surprise Attack: +2d6 damage if it surprises a target on the first round"] }
+  - slug: ripper
+    name: "Ripper"
+    statblock: { ac: 13, hp: 11, speed: 40, dex_mod: 1,
+                 attacks: [ {name: "Bite", bonus: 4, damage: "2d4+2", type: "piercing"} ],
+                 saves: {},
+                 traits: ["Klarg's pet wolf", "Pack Tactics", "DC 11 Str save or knocked prone on a hit"] }
+  - slug: yeemik
+    name: "Yeemik"
+    statblock: { ac: 15, hp: 7, speed: 30, dex_mod: 2,
+                 attacks: [ {name: "Scimitar", bonus: 4, damage: "1d6+2", type: "slashing"},
+                            {name: "Shortbow", bonus: 4, damage: "1d6+2", type: "piercing"} ],
+                 saves: {}, skills: {stealth: 6},
+                 traits: ["Nimble Escape", "Holds Sildar hostage rather than fighting fairly"] }
+
+  # ── Named-NPC stat blocks (LMoP Appendix B). Each slug matches its npc entry above,
+  #    so `lookup <name>` returns both the persona AND these stats, and `start_encounter`
+  #    can spawn them by slug if the NPC ever fights. Spell lists live under `spellcasting`.
+  - slug: sildar-hallwinter
+    name: "Sildar Hallwinter"
+    statblock: { ac: 16, hp: 27, speed: 30, dex_mod: 0,
+                 attacks: [ {name: "Longsword", bonus: 3, damage: "1d8+1", type: "slashing"},
+                            {name: "Heavy Crossbow", bonus: 2, damage: "1d10", type: "piercing"} ],
+                 saves: {str: 3, con: 3}, skills: {perception: 2},
+                 traits: ["Multiattack: two melee attacks",
+                          "Parry (reaction): +1d6 to AC against one melee attack it can see, while wielding a melee weapon",
+                          "Found at 1 HP as a prisoner; uses these stats only if freed, healed, and drawn into a fight"] }
+  - slug: king-grol
+    name: "King Grol"
+    statblock: { ac: 16, hp: 27, speed: 30, dex_mod: 2,
+                 attacks: [ {name: "Morningstar", bonus: 4, damage: "2d8+2", type: "piercing"},
+                            {name: "Javelin (melee)", bonus: 4, damage: "2d6+2", type: "piercing"},
+                            {name: "Javelin (thrown 30/120)", bonus: 4, damage: "1d6+2", type: "piercing"} ],
+                 saves: {}, skills: {stealth: 6, survival: 2},
+                 traits: ["Bugbear stat block (chief of the Cragmaws, Part 3)",
+                          "Brute: extra weapon die already included in the damage above",
+                          "Surprise Attack: +2d6 damage on a hit in round 1 if it surprised the target"] }
+  - slug: nezznar
+    name: "Nezznar the Black Spider"
+    statblock: { ac: 14, hp: 27, speed: 30, dex_mod: 1,
+                 attacks: [ {name: "Spider Staff", bonus: 1, damage: "1d6-1", type: "bludgeoning"} ],
+                 saves: {int: 5, wis: 4}, skills: {arcana: 5, perception: 4, stealth: 3},
+                 spellcasting: "4th-level wizard — spell save DC 13, +5 to hit. Cantrips: mage hand, ray of frost, shocking grasp. 1st (4 slots): mage armor, magic missile, shield. 2nd (3 slots): invisibility, suggestion. Innate — at will: dancing lights; 1/day each: darkness, faerie fire (DC 12).",
+                 traits: ["AC 14 assumes mage armor is up (11 without)",
+                          "Spider Staff also deals +1d6 poison on a hit",
+                          "Fey Ancestry: advantage vs charm, immune to magical sleep",
+                          "Sunlight Sensitivity: disadvantage on attack rolls in sunlight",
+                          "He IS the Black Spider — a drow named Nezznar. Do not reveal the identity until late."] }
+  - slug: glasstaff
+    name: "Glasstaff (Iarno Albrek)"
+    statblock: { ac: 12, hp: 22, speed: 30, dex_mod: 2,
+                 attacks: [ {name: "Quarterstaff", bonus: 1, damage: "1d8-1", type: "bludgeoning"} ],
+                 saves: {int: 5, wis: 3}, skills: {arcana: 5, history: 5},
+                 spellcasting: "4th-level wizard (Evil Mage) — spell save DC 13, +5 to hit. Cantrips: light, mage hand, shocking grasp. 1st (4 slots): charm person, magic missile. 2nd (3 slots): hold person, misty step.",
+                 traits: ["Iarno 'Glasstaff' Albrek — leader of the Redbrands (Part 2, Tresendar Manor)"] }
+  - slug: redbrand-ruffian
+    name: "Redbrand Ruffian"
+    statblock: { ac: 14, hp: 16, speed: 30, dex_mod: 2,
+                 attacks: [ {name: "Shortsword", bonus: 4, damage: "1d6+2", type: "piercing"} ],
+                 saves: {}, skills: {intimidation: 2},
+                 traits: ["Multiattack: two melee attacks", "Glasstaff's thugs who menace Phandalin (Part 2)"] }
+
+items:
+  - slug: gundrens-map
+    name: "Gundren's Map"
+    description: "A map marking the secret location of Wave Echo Cave and the Lost Mine of Phandelver. Taken with Gundren to Cragmaw Castle — not recoverable in Part 1."
+    properties: { plot: true, location: "Cragmaw Castle (Part 3)" }
+  - slug: potion-of-healing
+    name: "Potion of Healing"
+    description: "Drink as an action to regain 2d4+2 hit points."
+    properties: { magical: true, heal: "2d4+2" }
+  - slug: jade-frog
+    name: "Jade Frog Statuette"
+    description: "A small jade frog with tiny golden orbs for eyes. Worth about 40 gp; fits in a pouch."
+    properties: { value_gp: 40, unique: true }
+  - slug: lionshield-supplies
+    name: "Lionshield Coster Supplies"
+    description: "Crates of stolen goods marked with a blue lion — the sign of the Lionshield Coster of Phandalin. Returning them to Linene Graywind earns 50 gp and her company's friendship."
+    properties: { value_gp: 50 }
+
+pcs: []   # the harness adds the default party (Bram, Mira); swap later for LMoP pregens if desired
+
+quests:
+  - slug: escort-supplies
+    title: "Deliver Gundren's Supplies"
+    summary: "Bring the wagonload of provisions to Barthen's Provisions in Phandalin (10 gp each on delivery)."
+    status: active
+    steps:
+      - { text: "Survive the road to Phandalin", done: false }
+      - { text: "Deliver the supplies to Barthen's Provisions", done: false }
+  - slug: find-gundren
+    title: "Find Gundren Rockseeker"
+    summary: "Gundren and his escort were ambushed. Discover what happened and rescue him."
+    status: active
+    steps:
+      - { text: "Follow the goblins from the ambush", done: false }
+      - { text: "Learn where Gundren was taken", done: false }
+  - slug: rescue-sildar
+    title: "Rescue Sildar Hallwinter"
+    summary: "Sildar is held prisoner in the Cragmaw hideout."
+    status: inactive
+    steps:
+      - { text: "Free Sildar from the goblins", done: false }
+
+flags:
+  dam_released: false
+  sildar_freed: false
+  klarg_defeated: false
+  gold: 0
+
+factions:
+  - { faction: "Cragmaw Tribe", standing: -50 }
+  - { faction: "Lords' Alliance", standing: 10 }
+
+scenes:
+  - slug: the-road-to-phandalin
+    title: "The Road to Phandalin"
+    location: triboar-trail
+    read_aloud: "A few days out of Neverwinter, the dwarf Gundren Rockseeker hired you to haul a wagon of provisions southeast to the frontier town of Phandalin — ten gold pieces each, paid on delivery to Barthen's Provisions. Gundren was buzzing with a secret: he and his brothers, he said, had found 'something big.' He rode on ahead with a warrior named Sildar Hallwinter to 'take care of business,' leaving you the wagon and the long road. The High Road is behind you now; you turned east onto the Triboar Trail this morning. It has been quiet — but this is bandit country."
+    dm_notes: "OPENING / PREMISE — pure setup, no combat here. Establish the hook: the party was hired in Neverwinter by their dwarf patron Gundren Rockseeker to escort a supply wagon to Phandalin (10 gp each, payable at Barthen's Provisions); Gundren was secretive ('something big'); he rode ahead on horseback with the warrior Sildar Hallwinter to arrive early. The party has travelled the High Road, then turned east onto the Triboar Trail. Let the players get their bearings, introduce their characters, and decide how they each know Gundren if they wish. Do NOT spring the ambush here. When they travel on / continue down the trail, advance_scene to triboar-trail — the road bends and they find the dead horses."
+    transitions:
+      continue_down_the_trail: triboar-trail
+
+  - slug: triboar-trail
+    title: "Goblin Ambush on the Triboar Trail"
+    location: triboar-trail
+    read_aloud: "Half a day along the Triboar Trail toward Phandalin, the road bends — and the party finds the way ahead blocked."
+    dm_notes: "GOBLIN AMBUSH. Two dead horses lie across the trail (Gundren's and Sildar's, killed about a day ago by black-feathered goblin arrows); the saddlebags are looted and an empty leather map case lies nearby. 4 goblins (Stealth +6) hide in the thickets and embankment and may surprise the party (goblin Stealth vs each PC's passive Perception). In combat two rush to melee, two shoot from ~30 ft; when 3 are down the last flees up the trail. Goblins can be knocked out and made to talk (see Klarg/Yeemik/Grol/Black Spider lore). A hidden trail on the north side (DC 10 Survival to read the sign — about a dozen goblins, two human-sized bodies dragged off) runs ~5 miles NW to the Cragmaw hideout, with two traps along it (a snare: DC 12 Perception / DC 10 Dex save, restrained, 1d6 on a careless drop; and a camouflaged pit: DC 15 Perception). Award 75 XP for reaching the hideout. Do NOT reveal the Black Spider."
+    triggers:
+      - { when: "the party inspects the horses or ambush site", then: "they identify Gundren's and Sildar's mounts, black-feathered arrows, looted saddlebags, and an empty map case" }
+      - { when: "a goblin is captured and questioned", then: "it can reveal the hideout, that the boss is the bugbear Klarg, and that Gundren and a map were sent to King Grol at Cragmaw Castle" }
+    transitions:
+      follow_the_goblin_trail: cragmaw-cave-mouth
+      push_on_to_phandalin: phandalin-road
+
+  - slug: cragmaw-cave-mouth
+    title: "Cragmaw Hideout — Cave Mouth"
+    location: cragmaw-hideout
+    read_aloud: "After miles of forest trail, a cave opens in a hillside. A shallow stream runs from its mouth through dense briars, and a narrow dry path leads inside along the right."
+    dm_notes: "AREA 1 (outdoors, daylight). The stream flows out; briar thickets screen the mouth; the western thicket is impenetrable, a dry path enters on the east. Goblins at the lookout (area 2) are supposed to watch but are inattentive — if the party is loud they notice and fire with half cover; if quiet, they're spotted when the party crosses the stream (no surprise either way). The passage leads up (area 4) and to the wolf kennel (area 3)."
+    transitions:
+      cross_the_stream_to_the_lookout: goblin-lookout
+      slip_into_the_kennel: cragmaw-kennel
+      head_up_the_passage: steep-passage
+
+  - slug: goblin-lookout
+    title: "Cragmaw Hideout — Goblin Lookout"
+    location: cragmaw-hideout
+    read_aloud: "Across the stream, a hollow in the briars has been floored with planks — a hidden guard blind."
+    dm_notes: "AREA 2. Two goblins lurk here as a lookout, bored and inattentive (passive Perception 9), with half cover from the thickets. If they spotted the party in area 1 they open fire (likely surprise); if the party scouted/sneaked (Stealth vs the goblins) the goblins can be surprised instead. Thickets are difficult terrain + half cover. Use start_encounter with goblin x2."
+    transitions:
+      into_the_cave: steep-passage
+      to_the_kennel: cragmaw-kennel
+
+  - slug: cragmaw-kennel
+    title: "Cragmaw Hideout — The Kennel"
+    location: cragmaw-hideout
+    read_aloud: "A few uneven steps climb to a dank side chamber that reeks of animals; chains rattle and snarls echo from the dark."
+    dm_notes: "AREA 3 KENNEL. Three wolves are chained to an iron rod and cannot reach creatures on the steps, but attack any non-goblin that enters (start_encounter with wolf x3). Goaded, the wolves try to tear the rod free: each round in sight, DC 15 Str (first success lowers the DC to 10; second frees them). A narrow fissure in the east wall is a natural chimney climbing 30 ft up to Klarg's cave (area 8) — DC 10 Athletics to climb (a 5 or less = fall, 1d6 per 10 ft, land prone). Climbing it is the way to SURPRISE Klarg from an unexpected direction."
+    transitions:
+      climb_the_chimney_to_klarg: klargs-cave
+      back_to_the_passage: steep-passage
+
+  - slug: steep-passage
+    title: "Cragmaw Hideout — Steep Passage"
+    location: cragmaw-hideout
+    read_aloud: "The main passage climbs steeply, the stream tumbling and splashing down its western side; a side passage branches off to the west."
+    dm_notes: "AREA 4. The passage rises toward areas 5 and 6. With light or darkvision the party may spot the rope bridge above (area 5) and possibly its goblin guard (Perception vs the goblin's Stealth). The western passage is choked with rubble (difficult terrain) and crossed by a fragile ledge: more than ~100 lb on it collapses — DC 10 Dex save or 2d6 bludgeoning and knocked prone. FLOOD RISK: if the area-5 goblin signals area 7, a surge of water roars down this passage the following round (see Overpass notes)."
+    transitions:
+      up_to_the_overpass: overpass
+      west_toward_the_den: goblin-den
+
+  - slug: overpass
+    title: "Cragmaw Hideout — The Overpass"
+    location: cragmaw-hideout
+    read_aloud: "A rickety wood-and-rope bridge crosses the passage some twenty feet overhead, where a higher tunnel cuts across; a waterfall roars somewhere beyond."
+    dm_notes: "AREA 5. One lazy goblin guards the bridge (hiding; Perception vs its Stealth, passive 9). If it spots the party it signals area 7 to RELEASE THE FLOOD, then fires down. FLOOD: the round after the signal, a surge pours from area 7 down to area 1 — creatures near areas 3/4 make a DC 10 Dex save, then a DC 15 Str save or be swept down to area 1, knocked prone, 1d6 bludgeoning. Creatures on the bridge or climbing the walls are safe. The bridge collapses if overloaded (DC 10 Dex save or fall, 2d6, prone). The high tunnel leads to the goblin den (area 6) and toward the pools (area 7)."
+    transitions:
+      across_to_the_den: goblin-den
+      toward_the_pools: twin-pools
+
+  - slug: goblin-den
+    title: "Cragmaw Hideout — Goblin Den"
+    location: goblin-den
+    read_aloud: "A large cave split by a ten-foot escarpment with a rough natural stair; a cooking fire hazes the air, and a bound figure slumps on the upper ledge."
+    dm_notes: "AREA 6 GOBLIN DEN. Yeemik (the hideout's treacherous second-in-command) leads two goblins here — start_encounter with yeemik x1 + goblin x2. SILDAR HALLWINTER is held prisoner on the upper ledge, bound and beaten to 1 HP. If the fight turns against him, Yeemik seizes Sildar at the edge: 'Truce, or the human dies!' He offers to trade Sildar for Klarg's head (area 8) but will betray the deal and demand a ransom; Sildar warns against trusting him. If the party refuses to parley, Yeemik shoves Sildar off (1d6 — drops him to 0; he can be stabilized). Yeemik carries 3 gold teeth (1 gp each) and 15 sp. Set flag sildar_freed when Sildar is rescued; activate the rescue-sildar quest when the party discovers him."
+    triggers:
+      - { when: "the party discovers Sildar", then: "the rescue-sildar quest becomes active" }
+    transitions:
+      press_on_toward_klarg: klargs-cave
+      to_the_pools: twin-pools
+
+  - slug: twin-pools
+    title: "Cragmaw Hideout — Twin Pools Cave"
+    location: cragmaw-hideout
+    read_aloud: "A cavern half-filled by two broad pools fed by a high waterfall; low fieldstone dams hold the water back, and the roar drowns out other sounds."
+    dm_notes: "AREA 7 TWIN POOLS. Three goblins guard here and work the rock dams (the flood mechanism for area 5) — start_encounter with goblin x3. The waterfall masks sound between here and Klarg's cave (area 8). When a fight breaks out, one goblin flees to area 8 to warn Klarg. If the area-5 goblin already called for a flood, one or both pools are drained. A wide exit lies south; two smaller passages lead west toward area 8."
+    transitions:
+      on_to_klargs_cave: klargs-cave
+
+  - slug: klargs-cave
+    title: "Cragmaw Hideout — Klarg's Cave"
+    location: klargs-cave
+    read_aloud: "Looted sacks and crates are heaped at the south end of a large cavern. Coals of a great fire smolder at its center, and a natural stair climbs north toward the roar of falling water."
+    dm_notes: "AREA 8 — PART 1 CLIMAX. Klarg the bugbear lairs here with his pet wolf Ripper and two resentful goblins — start_encounter with klarg x1 + ripper x1 + goblin x2 (give Klarg Surprise Attack +2d6 if the party surprises him by climbing the chimney from area 3). The central FIRE PIT deals 1 fire damage to anyone entering it, or 1d6 to a creature knocked prone in it (once each per round). A chimney in the west wall drops 30 ft to area 3; if Ripper dies, Klarg tries to flee down it. The stolen SUPPLIES (crates marked with a blue lion — the Lionshield Coster of Phandalin; return them to Linene Graywind for 50 gp) give half cover. Hidden in the supplies is Klarg's unlocked chest: 600 cp, 110 sp, two potions of healing, and a jade frog statuette with gold-orb eyes (40 gp). Gundren and his map are NOT here — they were taken on to Cragmaw Castle. Clearing the hideout awards 275 XP (the party reaches 2nd level). Set flag klarg_defeated."
+    transitions:
+      leave_for_phandalin: phandalin-road
+
+  - slug: phandalin-road
+    title: "The Road to Phandalin"
+    location: phandalin
+    read_aloud: "The goblin caves fall behind you, and the trail runs on toward the frontier town of Phandalin."
+    dm_notes: "PART 2 BOUNDARY — not yet built. Hooks for when the party reaches Phandalin: deliver Gundren's supplies to Barthen's Provisions (10 gp each); escort Sildar (he pays 50 gp via a loan); return the Lionshield crates to Linene Graywind (50 gp). The town is troubled by the Redbrand ruffians, whose leader Glasstaff is the missing wizard Iarno Albrek. For now, narrate the journey and the first sight of town, then tell the player Part 2 is coming and pause for the DM to build it. Do NOT improvise the whole town yet."
+    transitions: {}

@@ -1,0 +1,119 @@
+# An original, freely-usable starter adventure (3 scenes, level 1) that exercises
+# every part of the schema. Use it as a template, or as a smoke-test campaign to
+# prove the engine works before you drop in the real thing.
+
+meta:
+  slug: sunken-bell
+  title: The Sunken Bell of Mirefen
+  ruleset: 5e-srd-5.1
+  starting_scene: village-arrival
+  level_range: [1, 2]
+  tone: "Grim folk-horror with dry humor. Short, sensory description. Let dread build."
+  safety:
+    lines: ["harm to children on-screen"]
+    veils: ["body horror — fade to black"]
+
+locations:
+  - slug: mirefen-village
+    name: Mirefen
+    region: The Reedlands
+    description: "A fog-bound fishing village on stilts above a black tidal lake. Twelve families left."
+    read_aloud: "Peat smoke, low tide, and the creak of wet rope. Lamps burn at noon here."
+  - slug: the-lakeshore
+    name: The Lakeshore
+    region: The Reedlands
+    description: "Mudflats where the lake breathes in and out. A drowned chapel spire pokes through at low tide."
+
+npcs:
+  - slug: elsy-marsh
+    name: Elsy Marsh
+    role: innkeeper
+    location: mirefen-village
+    disposition: 20
+    persona: "Blunt, grieving, speaks in short sentences. Hates pity. Wants her son back, not condolences."
+    knowledge: "Three nights ago, cold blue lights moved under the lake. Her son Tomas went to look and never came home."
+    secrets: "Tomas didn't wander off — he stole the old handbell and rang it at the shore on purpose."
+
+  - slug: old-corliss
+    name: Old Corliss
+    role: lampwright
+    location: mirefen-village
+    disposition: -10
+    persona: "Suspicious of outsiders, superstitious, talks in warnings."
+    knowledge: "The chapel sank a hundred years ago when the village 'let something in'. Says the bell should never ring."
+    secrets: "He was the one who hid the bell in the Marsh house years ago."
+
+monsters:
+  - slug: bog-wretch
+    name: Bog Wretch
+    statblock:
+      ac: 12
+      hp: 18
+      speed: 30
+      attacks: [{ name: "claw", bonus: 4, damage: "1d6+2", type: "slashing" }]
+      saves: { dex: 1, con: 3 }
+      traits: ["amphibious", "vulnerable to fire"]
+
+items:
+  - slug: tarnished-handbell
+    name: Tarnished Handbell
+    description: "A small bronze bell, green with age. When rung, it makes no sound a living ear can hear — but the water answers."
+    properties: { weight: 1, magical: true, attunement: false }
+
+pcs: []   # create at session start, or pre-gen here
+
+quests:
+  - slug: find-the-boy
+    title: Find Elsy's Son
+    summary: "Tomas Marsh rang a cursed bell at the lake and vanished. Find him before the tide turns him."
+    status: active
+    steps:
+      - { text: "Learn what happened the night Tomas vanished", done: false }
+      - { text: "Reach the drowned chapel at low tide", done: false }
+      - { text: "Find Tomas and stop the bell", done: false }
+
+flags:
+  tide: "high"          # high | low — gates access to the chapel
+  bell_rung: false
+  tomas_found: false
+
+factions:
+  - { faction: The Drowned Choir, standing: -40 }
+
+scenes:
+  - slug: village-arrival
+    title: Arrival in Mirefen
+    location: mirefen-village
+    read_aloud: "The road ends at a causeway of black, weeping planks. At the far end, a village on stilts leans into the fog. A woman waits by the first lamp, watching you come."
+    dm_notes: "Goal: hook the party with Elsy's plea. She offers 50gp + lodging. Don't reveal the cult or the bell's nature yet — Corliss can hint if pressed."
+    triggers:
+      - when: "party asks Elsy about the lights or her son"
+        then: "Elsy tells of the blue lights and Tomas; offers 50gp to find him."
+      - when: "party asks anyone about the chapel"
+        then: "Direct them to Old Corliss, who warns them off."
+    transitions:
+      go_to_lakeshore: lakeshore-dusk
+      talk_to_corliss: corliss-warning
+
+  - slug: corliss-warning
+    title: The Lampwright's Warning
+    location: mirefen-village
+    read_aloud: "Old Corliss doesn't look up from the wick he's trimming. 'You're the help, then. You'll want to leave before the tide turns.'"
+    dm_notes: "Corliss reveals the chapel sank when the village 'let something in', and that the bell calls it. If disposition rises above 0, he admits he hid the bell. The chapel is only reachable at low tide (flag: tide)."
+    transitions:
+      go_to_lakeshore: lakeshore-dusk
+
+  - slug: lakeshore-dusk
+    title: The Lakeshore at Dusk
+    location: the-lakeshore
+    read_aloud: "The lake exhales. Mud stretches toward a single spire of drowned stone, and somewhere out there a bell is ringing that you feel in your teeth rather than hear."
+    dm_notes: >
+      Climax setup. If tide=high, the chapel is underwater — they must wait or find another way.
+      At low tide a bog wretch rises from the mud (combat). Beyond it: the chapel stair, and Tomas
+      below, still ringing the bell, half-changed. Set tomas_found and bell_rung appropriately as
+      events occur, and log every beat to memory.
+    triggers:
+      - when: "tide is low and party approaches the spire"
+        then: "A bog wretch erupts from the mud — roll initiative."
+    transitions:
+      descend_chapel: chapel-below

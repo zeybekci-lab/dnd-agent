@@ -1,0 +1,41 @@
+# ─── secrets (never commit) ───
+.env
+.env.*
+!.env.example
+
+# ─── python ───
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# ─── node / next.js ───
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+.vercel/
+npm-debug.log*
+yarn-error.log*
+
+# ─── runtime / generated data (regenerable, large, or not ours) ───
+data/
+*.db
+*.sqlite
+*.ckpt
+chroma_db/
+chromaDB/
+ChromaDB/
+5e-srd-api/
+5e-database/
+_backup/
+*.log
+
+# ─── os / editor cruft ───
+.DS_Store
+*.swp
+.idea/
+.vscode/

@@ -1,0 +1,10 @@
+anthropic>=0.40        # Claude API (DM brain, summarizer)
+PyYAML>=6.0            # campaign file parsing
+fastapi>=0.110         # web adapter serving the A.R.C.A.N.A. Next.js frontend
+uvicorn>=0.29          # ASGI server for the adapter
+httpx>=0.27            # Starlette TestClient (dev/test)
+# sqlite3 is in the Python stdlib — no dependency needed
+#
+# Optional, only if/when we add semantic (vector) episodic recall:
+# voyageai>=0.3         # Anthropic-recommended embeddings (needs its own key), OR
+# sentence-transformers # local embeddings, no API key, heavier install
