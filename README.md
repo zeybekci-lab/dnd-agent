@@ -13,6 +13,35 @@ This is a monorepo with two parts:
 | `DndAgent/backend/` | A legacy/alternate backend (Gemini/OpenAI). Kept for history; **not** used by the Mac deployment. |
 | `DndAgent/evaluation.ipynb` | Project evaluation notebook. |
 
+## How it works
+
+The design principle throughout: **the model never owns the facts.** Everything a
+language model is bad at holding — numbers, rules, world state, dice — lives in
+deterministic components, and the model reaches those facts only through tools.
+
+**The DM brain** (`dnd-dm/engine/dm.py`) runs a retrieve → narrate → adjudicate →
+validate → write loop. The model is handed a frozen contract plus the campaign's
+static canon, and it drives the world exclusively through tool calls. Mutable world
+state is deliberately *not* in the system prompt — the model pulls it each turn via
+`get_state` — so the cached prefix never changes and inference bills at roughly 0.1x
+after the first turn. Two models split the work: a frontier model as the DM, a small
+fast model for session recaps and extraction.
+
+**The referee** (`dnd-dm/engine/dice.py`) owns all randomness and rules math. The DM
+model decides *what* roll to make and *why*; the dice engine decides the *outcome*.
+That separation is what stops a player from talking the model into a natural 20, and
+stops the model from hallucinating damage numbers.
+
+**The canon layer** (`dnd-dm/engine/state.py`) compiles a campaign YAML into SQLite
+once; thereafter the database is authoritative. Episodic recall ranks past events by
+importance × recency decay rather than "most recent", so an important betrayal from
+hours ago still surfaces over trivial recent chatter.
+
+**Human dice stay human** (`dnd-dm/engine/pending.py`): when a player-controlled
+character must roll, the tool parks a roll request, the UI shows a dice menu, and the
+submitted roll resolves deterministically in the combat engine. The model narrates
+the result; it never invents it.
+
 ## Deploy on the always-on Mac mini
 
 The Mac runs `dnd-dm` (backend, port 8000) + `DndAgent/frontend` (UI, port 3000),
